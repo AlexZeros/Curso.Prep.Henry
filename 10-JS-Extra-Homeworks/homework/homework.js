@@ -1,5 +1,7 @@
 // No cambies los nombres de las funciones.
 
+const { checkIsBareRepoTask } = require("simple-git/src/lib/tasks/check-is-repo");
+
 function deObjetoAmatriz(objeto){
   // Escribe una función que convierta un objeto en una matriz, donde cada elemento representa 
   // un par clave-valor en forma de matriz.
@@ -10,6 +12,14 @@ function deObjetoAmatriz(objeto){
       C: 3
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
+  var aux1 = [];   
+  for(let i in objeto){
+    var aux2 = [];
+    aux2[0]=i
+    aux2[1]=objeto[i]
+    aux1.push(aux2)
+  }
+  return aux1
 }
 
 
@@ -18,6 +28,18 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
   //Escribe tu código aquí
+  var abcdario = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+  var arre = string.split('')
+  function esigual(letra){
+    return letra==abcdario[i]
+  }
+  var result = new Object();
+  for(var i=0;i<abcdario.length;i++){
+      if(arre.filter(esigual).length>0){
+      result[abcdario[i]] = arre.filter(esigual).length      
+    }
+  }
+return result
 }
 
 
@@ -26,6 +48,16 @@ function capToFront(s) {
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
   //Escribe tu código aquí
+  //return [...s].sort((a, b) => /[A-Z]/.test(a) ? /[A-Z]/.test(b) ? 0 : -1 : 0).join('');
+  //result = s.split('').sort().join('')
+  var res1=[]
+  var res2=[]
+  for(var i=0;i<s.length;i++){
+    if(s[i].charCodeAt()>64 && s[i].charCodeAt()<91){
+      res1.push(s[i])
+    }else res2.push(s[i])
+  }
+  return res1.concat(res2).join('')
 }
 
 
@@ -35,28 +67,40 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí
-} 
-
+  var result =''
+  var straux =str.split(' ')
+  for(var i=0;i<straux.length;i++){
+    palabra = straux[i]     
+    result =  result + palabra.split('').reverse().join('') + ' '  
+} return result.substring(0,result.length-1)
+}
 
 function capicua(numero){
   //Escribe una función, la cual recibe un número y determina si es o no capicúa.
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí
-}
+    var num = numero.toString().split('').reverse().join('')
+    if(numero==num){
+      return 'Es capicua'
+    }else return 'No es capicua'
+  }
 
 
 function deleteAbc(cadena){
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí
-}
+  return cadena.split('a').join('').split('b').join('').split('c').join('')
+  }
 
 
 function sortArray(arr) {
   //La función recibe una matriz de strings. Ordena la matriz en orden creciente de longitudes de cadena
   //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] || Devuelve ---> [“You", "are", "looking", "beautiful"]
   //Escribe tu código aquí
+  //return arr.sort(function(a,b){return a.length - b.length})
+  return arr.sort((a,b) => a.length - b.length)
 }
 
 
@@ -65,7 +109,8 @@ function buscoInterseccion(arreglo1, arreglo2){
   //retornar un nuevo array con la intersección de ambos elementos. (Ej: [4,2,3] unión [1,3,4] = [3,4].
   //Si no tienen elementos en común, retornar un arreglo vacío.
   //Aclaración: los arreglos no necesariamente tienen la misma longitud
-  //Escribe tu código aquí  
+  //Escribe tu código aquí 
+  return result = arreglo1.filter((num) => arreglo2.includes(num))  
 }
 
 
